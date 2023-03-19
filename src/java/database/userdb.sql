@@ -13,9 +13,9 @@ CREATE SCHEMA IF NOT EXISTS `userdb` DEFAULT CHARACTER SET latin1;
 USE `userdb`;
 
 CREATE TABLE IF NOT EXISTS `userdb`.`role` (
-`role_id` INT(11) NOT NULL,
-`role_name` VARCHAR(25) NOT NULL,
-PRIMARY KEY (`role_id`));
+  `role_id` INT(11) NOT NULL,
+  `role_name` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`role_id`));
 
 CREATE TABLE IF NOT EXISTS `userdb`.`user` (
   `email` VARCHAR(40) NOT NULL,
@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `userdb`.`user` (
     FOREIGN KEY (`role`)
     REFERENCES `userdb`.`role` (`role_id`));
 
+
 INSERT INTO `role` VALUES (1, 'system admin');
 INSERT INTO `role` VALUES (2, 'regular user');
 
@@ -39,4 +40,3 @@ INSERT INTO `user` (`email`,`first_name`,`last_name`,`password`,`role`)
 	VALUES ('cprg352+anne@gmail.com', 'Anne','Annerson', 'password', 2);
 INSERT INTO `user` (`email`,`first_name`,`last_name`,`password`,`role`)
 	VALUES ('cprg352+barb@gmail.com', 'Barb','Barber', 'password', 2);
-
