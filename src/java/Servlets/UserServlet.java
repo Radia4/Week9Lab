@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Servlets;
 
 import java.io.IOException;
@@ -18,7 +23,7 @@ import services.UserService;
  *
  * @author radia
  */
-public class UserServlets extends HttpServlet {
+public class UserServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -30,8 +35,7 @@ public class UserServlets extends HttpServlet {
         try {
             List<User> users = (new UserService()).getAll();
             request.setAttribute("users", users);
-            List<Role> roles = (new RoleService()).getAll();
-            request.setAttribute("roles", roles);
+  
             
             if(edit != null && email != null && !email.equals("")) {
                 User user = (new UserService()).get(email);
@@ -48,7 +52,7 @@ public class UserServlets extends HttpServlet {
             rd.forward(request, response);
             return;
         } catch (Exception e) {
-            Logger.getLogger(UserServlets.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, e);
             request.setAttribute("message", "error");
             return;
         }
@@ -89,7 +93,7 @@ public class UserServlets extends HttpServlet {
             response.sendRedirect("");
             return;
         } catch (Exception e) {
-            Logger.getLogger(UserServlets.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, e);
         }
         RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/users.jsp");
     }
